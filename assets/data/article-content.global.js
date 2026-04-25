@@ -1,1 +1,2 @@
-window.ARTICLE_CONTENT = [];
+﻿window.ARTICLE_CONTENT = [];
+

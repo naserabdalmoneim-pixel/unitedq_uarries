@@ -33,7 +33,7 @@
       mobileQuoteLabel: "عرض سعر",
       backToTopLabel: "العودة للأعلى",
       footerAddress:
-        "مبنى 9054، ابو وجاهة المرشدي، حي المرة، جدة، المملكة العربية السعودية",
+        "مبنى 9054، أبو وجاهة المرشدي، حي المروة، جدة، المملكة العربية السعودية",
       navItems: [
         { href: "index.html", label: "الرئيسية", activeKeys: ["home"] },
         { href: "index.html#about", label: "من نحن", activeKeys: [] },
@@ -125,7 +125,7 @@
       footerServiceItems: [
         { href: "index.html#projects", label: "المشاريع" },
         { href: "index.html#partners", label: "الشركاء" },
-        { href: "blog/", label: "المدونة" },
+        { href: "blog/index.html", label: "المدونة" },
         { href: "index.html#certificates", label: "الشهادات" },
         { href: "index.html#approvals", label: "أوراق الاعتماد" },
         { href: "index.html#contact", label: "اتصل بنا" },
@@ -133,7 +133,6 @@
       ],
       footerPolicyItems: [
         { href: "privacy-policy.html", label: "سياسة الخصوصية" },
-        { href: "terms.html", label: "الشروط والأحكام" },
       ],
     },
     en: {
@@ -167,7 +166,7 @@
       mobileQuoteLabel: "Quote",
       backToTopLabel: "Back to top",
       footerAddress:
-        "Building 9054, Abu Wajahah Al-Murshidi, Al Murrah District, Jeddah, Saudi Arabia",
+        "Building 9054, Abu Wajahah Al-Murshidi, Al Marwah District, Jeddah, Saudi Arabia",
       navItems: [
         { href: "index.html", label: "Home", activeKeys: ["home"] },
         { href: "index.html#about", label: "About", activeKeys: [] },
@@ -255,7 +254,7 @@
       footerServiceItems: [
         { href: "index.html#projects", label: "Projects" },
         { href: "index.html#partners", label: "Partners" },
-        { href: "blog/", label: "Blog" },
+        { href: "blog/index.html", label: "Blog" },
         { href: "index.html#certificates", label: "Certificates" },
         { href: "index.html#approvals", label: "Approvals" },
         { href: "index.html#contact", label: "Contact" },
@@ -263,8 +262,6 @@
       ],
       footerPolicyItems: [
         { href: "privacy-policy.html", label: "Privacy Policy" },
-        { href: "terms.html", label: "Terms & Conditions" },
-        { href: "refund-policy.html", label: "Refund & Cancellation Policy" },
       ],
     },
   };

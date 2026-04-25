@@ -11,17 +11,6 @@
       readTime: "6 min read",
       imageAlt: "Concrete pouring in hot weather in Saudi Arabia",
     },
-    "concrete-quality-tests-guide": {
-      title: "Key Ready-Mix Quality Tests from Plant to Site",
-      metaTitle: "Key Ready-Mix Quality Tests from Plant to Site",
-      metaDescription:
-        "Essential checks that verify mix consistency, fresh concrete performance, and compliance before casting.",
-      excerpt:
-        "Essential checks that verify mix consistency, fresh concrete performance, and compliance before casting.",
-      category: "Quality & Testing",
-      readTime: "8 min read",
-      imageAlt: "Ready-mix concrete quality tests at project site",
-    },
     "how-to-choose-concrete-strength": {
       title: "How to Choose the Right Concrete Strength for Your Project",
       metaTitle: "How to Choose the Right Concrete Strength for Your Project",
@@ -278,7 +267,7 @@
   }
 
   function buildArticleHref(basePath, slug) {
-    return `${basePath || ""}blog/${slug}/`;
+    return `${basePath || ""}blog/${slug}/index.html`;
   }
 
   function createArticleCard(post, basePath, options) {

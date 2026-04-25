@@ -191,28 +191,6 @@ function updateArticlePage(relativePath, post) {
   write(relativePath, cleanHtml(page));
 }
 
-function writeLegacyRedirect(relativePath, title) {
-  const html = `<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex,follow">
-  <title>${escapeHtml(title)}</title>
-  <link rel="canonical" href="${siteOrigin}/blog/">
-</head>
-<body>
-  <main style="font-family: sans-serif; text-align: center; padding: 48px 24px">
-    <h1>تم نقل هذا المقال</h1>
-    <p>هذه الصفحة غير مخصصة للفهرسة. انتقل إلى <a href="${siteOrigin}/blog/">صفحة المدونة الرئيسية</a>.</p>
-    <p>إذا كنت تشاهد هذا المحتوى لأنك استخدمت رابطًا قديمًا، فاضغط على الرابط السابق للوصول إلى المحتوى الأحدث.</p>
-  </main>
-</body>
-</html>
-`;
-  write(relativePath, cleanHtml(html));
-}
-
 function updatePageRefs() {
   const indexPage = read("index.html")
     .replace(
@@ -238,8 +216,6 @@ function updatePageRefs() {
 
   for (const file of [
     "privacy-policy.html",
-    "refund-policy.html",
-    "terms.html",
   ]) {
     const page = read(file)
       .replace(
@@ -270,8 +246,6 @@ function updateSitemap(posts) {
     <priority>1.0</priority>
   </url>
   <url><loc>${siteOrigin}/privacy-policy.html</loc><lastmod>${today}</lastmod></url>
-  <url><loc>${siteOrigin}/terms.html</loc><lastmod>${today}</lastmod></url>
-  <url><loc>${siteOrigin}/refund-policy.html</loc><lastmod>${today}</lastmod></url>
   <url><loc>${siteOrigin}/blog/</loc><lastmod>${today}</lastmod></url>
 ${activeUrls}
 </urlset>
@@ -402,15 +376,6 @@ function main() {
   for (const post of posts) {
     updateArticlePage(`blog/${post.slug}/index.html`, post);
   }
-
-  writeLegacyRedirect(
-    "blog/ready-mix-concrete-jeddah-guide/index.html",
-    "تم نقل هذا المقال",
-  );
-  writeLegacyRedirect(
-    "blog/concrete-quality-tests-guide/index.html",
-    "تم نقل هذا المقال",
-  );
 
   updateSitemap(posts);
   updateRobots();

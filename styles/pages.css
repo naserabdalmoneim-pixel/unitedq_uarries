@@ -580,14 +580,6 @@ body.light-mode .legal-nav-links a {
   padding-inline-start: 22px;
 }
 
-html[data-active-page="privacy"] #main-content,
-html[data-active-page="terms"] #main-content,
-html[data-active-page="refund"] #main-content,
-
-html[data-active-page="privacy"][data-legal-ready="true"] #main-content,
-html[data-active-page="terms"][data-legal-ready="true"] #main-content,
-html[data-active-page="refund"][data-legal-ready="true"] #main-content,
-
 @media (max-width: 992px) {
   .page-main {
     padding: 20px 0 60px;

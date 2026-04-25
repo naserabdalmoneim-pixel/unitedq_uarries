@@ -18,11 +18,11 @@ window.BLOG_POSTS = [
 
 <h2>ما الذي يجب تجهيزه قبل توريد الخرسانة الجاهزة؟</h2>
 <p>أفضل نتائج الخرسانة في الطقس الحار تبدأ قبل خروج الخلاطة من المصنع. يجب أن يكون الموقع جاهزًا بالكامل، وأن تُنسق ساعات الصب في الفترات الأقل حرارة قدر الإمكان، وأن تُراجع الخلطة مع المورد إذا كان المشروع معرضًا لدرجات حرارة عالية أو صب متواصل أو أحمال تشغيلية مهمة.</p>
-<p>كما يساعد تجهيز العمالة، والمضخة، وأدوات الدمك، وخطة التشطيب المسبق على تقليل التأخير بعد وصول الخرسانة، وهو عامل مهم جدًا في مشاريع السعودية خلال الصيف. ويمكن دعم قرار الخلطة عبر مراجعة مقال <a href="https://golden-western.sa/blog/how-to-choose-concrete-strength/">اختيار مقاومة الخرسانة المناسبة</a> قبل اعتماد الطلب النهائي.</p>
+<p>كما يساعد تجهيز العمالة، والمضخة، وأدوات الدمك، وخطة التشطيب المسبق على تقليل التأخير بعد وصول الخرسانة، وهو عامل مهم جدًا في مشاريع السعودية خلال الصيف. ويمكن دعم قرار الخلطة عبر مراجعة مقال <a href="../how-to-choose-concrete-strength/index.html">اختيار مقاومة الخرسانة المناسبة</a> قبل اعتماد الطلب النهائي.</p>
 
 <h2>التحكم أثناء النقل والصب والمعالجة</h2>
 <p>خلال النقل، يجب تقليل زمن الوصول قدر الإمكان ومنع أي تعديلات عشوائية في الموقع، خصوصًا إضافة الماء بدون ضبط فني. وفي مرحلة الصب، يجب تقليل تعريض الخرسانة للشمس المباشرة، وتنفيذ الدمك والتشطيب ضمن نافذة زمنية مناسبة، ثم البدء في المعالجة بسرعة لحماية السطح والعنصر من الفقد السريع للرطوبة.</p>
-<p>المعالجة ليست خطوة ثانوية، بل هي خط الدفاع الأخير ضد آثار الحرارة. وكلما كان التنسيق أفضل بين المصنع والموقع، انخفضت مخاطر التشققات وضعف السطح وتفاوت الأداء. كما أن فهم <a href="https://golden-western.sa/blog/types-of-concrete-differences/">أنواع الخرسانة المختلفة</a> يساعد على اختيار خلطة أكثر ملاءمة للبيئة الحارة ومتطلبات المتانة.</p>
+<p>المعالجة ليست خطوة ثانوية، بل هي خط الدفاع الأخير ضد آثار الحرارة. وكلما كان التنسيق أفضل بين المصنع والموقع، انخفضت مخاطر التشققات وضعف السطح وتفاوت الأداء. كما أن فهم <a href="../types-of-concrete-differences/index.html">أنواع الخرسانة المختلفة</a> يساعد على اختيار خلطة أكثر ملاءمة للبيئة الحارة ومتطلبات المتانة.</p>
 
 <h2>أفضل نوع خرسانة في الأجواء الحارة في السعودية</h2>
 <p>أفضل نوع خرسانة في الأجواء الحارة في السعودية هو النوع الذي يوازن بين مقاومة الضغط، قابلية التشغيل، وانخفاض النفاذية، مع استخدام إضافات مناسبة وخطة صب ومعالجة منضبطة. في المشاريع المعرضة لحرارة مرتفعة أو بيئات قاسية، يكون الاختيار الصحيح هو الخرسانة التي تحافظ على جودة التنفيذ والمتانة طويلة الأمد، وليس فقط التي تحمل رقم مقاومة أعلى على الورق.</p>
@@ -35,11 +35,11 @@ window.BLOG_POSTS = [
 
 <h2>What should be prepared before dispatch?</h2>
 <p>The best hot-weather concreting results start before the truck leaves the plant. The site should be fully prepared, pours should be scheduled during lower-temperature periods where possible, and the selected concrete mix should match the structural demand and environmental exposure of the project.</p>
-<p>Pre-coordination with the supplier, pump crew, and finishing team reduces delays after arrival and helps protect concrete quality during the most critical placement window. It is also useful to review <a href="https://golden-western.sa/blog/how-to-choose-concrete-strength/">how to choose the right concrete strength</a> before finalizing the mix design.</p>
+<p>Pre-coordination with the supplier, pump crew, and finishing team reduces delays after arrival and helps protect concrete quality during the most critical placement window. It is also useful to review <a href="../how-to-choose-concrete-strength/index.html">how to choose the right concrete strength</a> before finalizing the mix design.</p>
 
 <h2>Control during transport, placement, and curing</h2>
 <p>During transport, delivery time should be tightly controlled and uncontrolled site-side water addition should be avoided. During placement, concrete should be protected from unnecessary exposure to direct sun and wind, with compaction and finishing completed inside the proper working window.</p>
-<p>Curing is the final protection layer against hot-weather damage. Fast and disciplined curing helps retain moisture and reduce the risk of cracking, weak surfaces, and inconsistent long-term performance. Understanding <a href="https://golden-western.sa/blog/types-of-concrete-differences/">the differences between concrete types</a> also helps teams choose a mix that is better suited to Saudi Arabia’s hot weather conditions.</p>
+<p>Curing is the final protection layer against hot-weather damage. Fast and disciplined curing helps retain moisture and reduce the risk of cracking, weak surfaces, and inconsistent long-term performance. Understanding <a href="../types-of-concrete-differences/index.html">the differences between concrete types</a> also helps teams choose a mix that is better suited to Saudi Arabia’s hot weather conditions.</p>
 
 <h2>Best Concrete Type for Hot Weather in Saudi Arabia</h2>
 <p>The best concrete type for hot weather in Saudi Arabia is the one that balances strength, workability, and durability while using suitable admixtures and a disciplined curing plan. In exposed or demanding projects, the right concrete is the mix that protects long-term performance in hot weather, not simply the one with the highest nominal strength label.</p>
@@ -83,11 +83,11 @@ window.BLOG_POSTS = [
 
 <h2>كيف تربط المقاومة بنوع العنصر الإنشائي؟</h2>
 <p>الأرضيات، القواعد، الأعمدة، والأسقف لا تتعامل مع الخرسانة بالطريقة نفسها. بعض العناصر تحتاج توازنًا أكبر بين المقاومة وقابلية التشغيل، خصوصًا عندما تكون كثافة التسليح مرتفعة أو ظروف الصب محدودة زمنيًا. لذلك يجب مراجعة التصميم الإنشائي مع المورد أو المهندس قبل اعتماد الخلطة.</p>
-<p>في مشاريع السعودية، قد تؤثر الأجواء الحارة أيضًا على قرار اختيار المقاومة، لأن الخلطة يجب أن تكون قابلة للتنفيذ الميداني بنفس قدر أهميتها الإنشائية. ويمكن فهم تأثير الحرارة بشكل أوسع من خلال مقال <a href="https://golden-western.sa/blog/hot-weather-concreting-saudi-arabia/">الخرسانة في الأجواء الحارة في السعودية</a>.</p>
+<p>في مشاريع السعودية، قد تؤثر الأجواء الحارة أيضًا على قرار اختيار المقاومة، لأن الخلطة يجب أن تكون قابلة للتنفيذ الميداني بنفس قدر أهميتها الإنشائية. ويمكن فهم تأثير الحرارة بشكل أوسع من خلال مقال <a href="../hot-weather-concreting-saudi-arabia/index.html">الخرسانة في الأجواء الحارة في السعودية</a>.</p>
 
 <h2>المتانة والبيئة جزء من قرار المقاومة</h2>
 <p>في البيئات البحرية أو المعرضة للأملاح أو الرطوبة أو الكبريتات، لا تكون المقاومة وحدها كافية. هنا تظهر أهمية المتانة، وتقليل النفاذية، وضبط مكونات الخلطة بما يتناسب مع بيئة المشروع. لذلك فإن اختيار مقاومة الخرسانة يجب أن يتكامل مع اختيار نوع الخرسانة المناسب من حيث المتطلبات التشغيلية والمتانة.</p>
-<p>ولذلك يكون من المفيد أيضًا مراجعة <a href="https://golden-western.sa/blog/types-of-concrete-differences/">الفروق بين أنواع الخرسانة</a> قبل اعتماد المواصفة النهائية، حتى لا يتم اختيار خلطة أقوى أو أضعف من الحاجة الفعلية للمشروع.</p>
+<p>ولذلك يكون من المفيد أيضًا مراجعة <a href="../types-of-concrete-differences/index.html">الفروق بين أنواع الخرسانة</a> قبل اعتماد المواصفة النهائية، حتى لا يتم اختيار خلطة أقوى أو أضعف من الحاجة الفعلية للمشروع.</p>
 
 <h2>أفضل نوع خرسانة في الأجواء الحارة في السعودية</h2>
 <p>أفضل نوع خرسانة في الأجواء الحارة في السعودية هو النوع الذي يوازن بين مقاومة مناسبة، وقابلية تشغيل جيدة، ومعالجة فعالة، وليس بالضرورة أعلى مقاومة متاحة. القرار الصحيح يبدأ من فهم العنصر، وبيئة المشروع، وتأثير الحرارة على التنفيذ، ثم اختيار الخرسانة التي تحقق الأداء المطلوب بأعلى موثوقية وأفضل كفاءة اقتصادية.</p>
@@ -100,11 +100,11 @@ window.BLOG_POSTS = [
 
 <h2>How should strength be linked to the structural element?</h2>
 <p>Slabs, footings, columns, and suspended elements do not place the same demand on a concrete mix. Some members require a careful balance between strength and workability, especially when reinforcement is dense or placement windows are short. That is why the requested concrete strength should align with design intent and site execution needs.</p>
-<p>In Saudi Arabia, hot weather conditions may further influence this choice because the mix must remain practical to place and cure properly. For that reason, teams should also review <a href="https://golden-western.sa/blog/hot-weather-concreting-saudi-arabia/">hot weather concreting practices in Saudi Arabia</a> before approving the final mix.</p>
+<p>In Saudi Arabia, hot weather conditions may further influence this choice because the mix must remain practical to place and cure properly. For that reason, teams should also review <a href="../hot-weather-concreting-saudi-arabia/index.html">hot weather concreting practices in Saudi Arabia</a> before approving the final mix.</p>
 
 <h2>Durability and exposure conditions matter too</h2>
 <p>In marine, industrial, or salt-exposed environments, strength alone is not enough. Concrete durability, permeability control, and long-term resistance become equally important. Choosing the right concrete strength therefore also means choosing the right level of durability for the service environment.</p>
-<p>It is often useful to compare <a href="https://golden-western.sa/blog/types-of-concrete-differences/">different concrete types</a> before final approval, so the project team selects a mix that meets both structural and environmental demands without unnecessary over-specification.</p>
+<p>It is often useful to compare <a href="../types-of-concrete-differences/index.html">different concrete types</a> before final approval, so the project team selects a mix that meets both structural and environmental demands without unnecessary over-specification.</p>
 
 <h2>Best Concrete Type for Hot Weather in Saudi Arabia</h2>
 <p>The best concrete type for hot weather in Saudi Arabia is the mix that balances appropriate strength, site workability, durability, and curing performance. The right decision is not the highest number by default, but the concrete specification that delivers reliable structural performance under Saudi Arabia’s real hot weather conditions.</p>
@@ -155,7 +155,7 @@ window.BLOG_POSTS = [
 
 <h2>متى نستخدم الخرسانة المقاومة أو عالية القوة؟</h2>
 <p>الخرسانة المقاومة تستخدم عندما تكون المتانة والحد من النفاذية جزءًا أساسيًا من متطلبات المشروع، مثل البيئات المالحة أو الرطبة أو العدوانية. أما الخرسانة عالية القوة فتكون مبررة عندما توجد حاجة إنشائية فعلية مثل أحمال أعلى أو عناصر نحيفة أو اشتراطات تصميم خاصة.</p>
-<p>هذا القرار يجب ألا يُتخذ بمعزل عن باقي العوامل. لذلك من المهم أيضًا مراجعة <a href="https://golden-western.sa/blog/how-to-choose-concrete-strength/">اختيار مقاومة الخرسانة المناسبة</a> وربطه مع ظروف المشروع. كما أن فهم <a href="https://golden-western.sa/blog/hot-weather-concreting-saudi-arabia/">تأثير الأجواء الحارة على الخرسانة في السعودية</a> يساعد على اختيار النوع الأنسب للتنفيذ الفعلي.</p>
+<p>هذا القرار يجب ألا يُتخذ بمعزل عن باقي العوامل. لذلك من المهم أيضًا مراجعة <a href="../how-to-choose-concrete-strength/index.html">اختيار مقاومة الخرسانة المناسبة</a> وربطه مع ظروف المشروع. كما أن فهم <a href="../hot-weather-concreting-saudi-arabia/index.html">تأثير الأجواء الحارة على الخرسانة في السعودية</a> يساعد على اختيار النوع الأنسب للتنفيذ الفعلي.</p>
 
 <h2>أفضل نوع خرسانة في الأجواء الحارة في السعودية</h2>
 <p>أفضل نوع خرسانة في الأجواء الحارة في السعودية هو النوع الذي يحقق التوازن بين مقاومة مناسبة، ومتطلبات متانة واضحة، وسهولة تنفيذ تحمي الخلطة أثناء الصب والمعالجة. في كثير من الحالات، تكون الخرسانة الأنسب هي التي تخدم العنصر والبيئة والموقع معًا، وليس فقط النوع الأعلى في التصنيف أو التكلفة.</p>
@@ -172,7 +172,7 @@ window.BLOG_POSTS = [
 
 <h2>When should you use resistant or high-strength concrete?</h2>
 <p>Resistant concrete becomes necessary when durability and permeability control are critical, such as in salty, wet, or aggressive environments. High-strength concrete is justified when there is a real structural need, such as higher loading, slimmer members, or project-specific design demands.</p>
-<p>This decision should be tied to the broader specification strategy. It helps to review <a href="https://golden-western.sa/blog/how-to-choose-concrete-strength/">how concrete strength should be selected</a> and relate it to site conditions. It is equally important to understand <a href="https://golden-western.sa/blog/hot-weather-concreting-saudi-arabia/">how hot weather affects concrete in Saudi Arabia</a> before choosing the final mix type.</p>
+<p>This decision should be tied to the broader specification strategy. It helps to review <a href="../how-to-choose-concrete-strength/index.html">how concrete strength should be selected</a> and relate it to site conditions. It is equally important to understand <a href="../hot-weather-concreting-saudi-arabia/index.html">how hot weather affects concrete in Saudi Arabia</a> before choosing the final mix type.</p>
 
 <h2>Best Concrete Type for Hot Weather in Saudi Arabia</h2>
 <p>The best concrete type for hot weather in Saudi Arabia is the one that balances appropriate strength, durability, and workable placement under real site conditions. In many projects, the best mix is not the highest classification by default, but the one that protects long-term concrete performance while remaining practical to place and cure in hot weather.</p>

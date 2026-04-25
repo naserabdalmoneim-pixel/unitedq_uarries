@@ -109,7 +109,7 @@
         <section class="page-section">
             <div class="container">
                 <div class="page-panel content-card-empty">
-                    ${copy.loadErrorPrefix} <a href="${basePath}blog/">${copy.loadErrorLink}</a>.
+                    ${copy.loadErrorPrefix} <a href="${basePath}blog/index.html">${copy.loadErrorLink}</a>.
                 </div>
             </div>
         </section>
@@ -236,7 +236,7 @@
                 <nav class="page-breadcrumbs" aria-label="${copy.breadcrumbAria}">
                     <a href="${basePath}index.html">${copy.homeLabel}</a>
                     <span>•</span>
-                    <a href="${basePath}blog/">${copy.blogLabel}</a>
+                    <a href="${basePath}blog/index.html">${copy.blogLabel}</a>
                     <span>•</span>
                     <span>${localizedSummary.title}</span>
                 </nav>

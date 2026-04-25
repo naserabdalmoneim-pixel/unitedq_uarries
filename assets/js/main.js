@@ -179,7 +179,7 @@ function animateCounters() {
 }
 
 const projectData = {
-  project2: { m3: "35,000", units: "19" }, // Al Sadeem Residential District
+  project2: { m3: "35,000", units: "19" }, // Burj Motayara Villa
   project3: { year: 2026, m3: "60,000", units: "500,000" }, // Buraiman Water Plant
   project4: { year: 2025, m3: "22,000", units: "8" }, // Al Andalus Education Campus
   project5: { m3: "2,500" }, // Vida Project
@@ -214,33 +214,41 @@ projectCards.forEach((card) => {
   if (title) card.setAttribute("aria-label", `عرض تفاصيل ${title}`);
 });
 
-const mockProjects = {
-  1: [
-    { title: "برج الواجهة البحرية", desc: "إجمالي 80,000 م³", url: "#" },
-    { title: "كورنيش جدة السكني", desc: "إجمالي 62,000 م³", url: "#" },
-    { title: "منتجع ساحلي خاص", desc: "إجمالي 25,000 م³", url: "#" },
-  ],
-  2: [
-    { title: "مجمع فلل الشمال", desc: "40 مبنى منفذ", url: "#" },
-    { title: "كمباوند حدائق البحر", desc: "35 مبنى منفذ", url: "#" },
-    { title: "حي النرجس السكني", desc: "28 مبنى منفذ", url: "#" },
-  ],
-  3: [
-    { title: "محطة مياه مركزية", desc: "إجمالي 250,000 م³/سنة", url: "#" },
-    { title: "شبكة صرف رئيسية", desc: "إجمالي 150,000 م³/سنة", url: "#" },
-    { title: "خزان إستراتيجي", desc: "إجمالي 100,000 م³", url: "#" },
-  ],
-  4: [
-    { title: "مستودعات لوجستية", desc: "10 مستودعات منفذة", url: "#" },
-    { title: "مراكز توزيع باردة", desc: "15 موقع منفذ", url: "#" },
-    { title: "مصانع غذائية", desc: "8 مصانع منفذة", url: "#" },
-  ],
-  5: [
-    { title: "كباري حديثة التنفيذ", desc: "6 كباري منفذة", url: "#" },
-    { title: "عبارات تصريف سيول", desc: "4 مواقع منفذة", url: "#" },
-    { title: "ممرات مشاة وجسور", desc: "12 مشروع منفذ", url: "#" },
-  ],
+let currentProjectId = null;
+
+const projectRelations = {
+  2: ["3", "4", "5"],
+  3: ["2", "4", "5"],
+  4: ["2", "3", "5"],
+  5: ["2", "3", "4"],
 };
+
+function getCurrentLanguage() {
+  return document.documentElement.lang === "en" ? "en" : "ar";
+}
+
+function getProjectTitle(projectId, lang) {
+  const content = translations[lang] || translations.ar;
+  return (
+    content[`project${projectId}Title`] ||
+    content.project2Title ||
+    (lang === "en" ? "Project" : "مشروع")
+  );
+}
+
+function getProjectDesc(projectId, lang) {
+  const content = translations[lang] || translations.ar;
+  return content[`project${projectId}Desc`] || "";
+}
+
+function getMockProjectsForProject(projectId, lang) {
+  const related = projectRelations[projectId] || [];
+  return related.map((id) => ({
+    projectId: id,
+    title: getProjectTitle(id, lang),
+    desc: getProjectDesc(id, lang),
+  }));
+}
 
 function extractYouTubeId(url) {
   if (!url) return "";
@@ -279,13 +287,16 @@ function buildYouTubeEmbedUrl(url, options = {}) {
     autoplay: options.autoplay ? "1" : "0",
     mute: options.mute ? "1" : "0",
     controls: options.controls === false ? "0" : "1",
-    loop: options.loop ? "1" : "0",
     playsinline: "1",
-    rel: "0",
-    modestbranding: "1",
   });
 
+  if (window.location.protocol === "http:" || window.location.protocol === "https:") {
+    params.set("origin", window.location.origin);
+    params.set("widget_referrer", window.location.href.split("#")[0]);
+  }
+
   if (options.loop) {
+    params.set("loop", "1");
     params.set("playlist", videoId);
   }
 
@@ -512,9 +523,8 @@ function ensureHeroVideoModal() {
       </button>
       <iframe
         title="GW Readymix Video"
-        loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
+        referrerpolicy="origin-when-cross-origin"
         allowfullscreen
       ></iframe>
       <video
@@ -608,35 +618,81 @@ function applyYouTubeHeroPoster(videoBackground, youtubeUrl) {
   poster.src = sources[currentIndex];
 }
 
-function renderProjectFallbackImage(projectTitle, videoUrl = "") {
-  const thumbnailUrls = videoUrl ? buildYouTubeThumbnailUrls(videoUrl) : [];
-  const thumbnailSrc = thumbnailUrls.length
-    ? thumbnailUrls[0]
-    : "assets/images/hero/hero-1.webp";
-
+function renderProjectFallbackImage(projectTitle, imagePath) {
   videoContainer.className = "video-container video-container--image";
   videoContainer.innerHTML = `
-    <div class="project-video-fallback">
-      <img
-        class="project-media-image"
-        src="${thumbnailSrc}"
-        alt="${projectTitle}"
-        loading="lazy"
-        decoding="async"
-      >
-      ${videoUrl ? `<a class="project-video-fallback-link" href="${videoUrl}" target="_blank" rel="noopener">مشاهدة العرض على يوتيوب</a>` : ""}
-    </div>
+    <img
+      class="project-media-image"
+      src="${imagePath || "assets/images/hero/hero-1.webp"}"
+      alt="${projectTitle}"
+      loading="lazy"
+      decoding="async"
+    >
   `;
 }
 
-function openProjectModal(projectId) {
-  const projectTitle =
-    document.getElementById(`project${projectId}-title`)?.textContent?.trim() ||
-    "مشروع";
-  const projects = mockProjects[projectId] || [];
+function renderProjectYouTubeEmbed(projectTitle, videoUrl, imagePath) {
+  const embedUrl = buildYouTubeEmbedUrl(videoUrl, {
+    autoplay: true,
+    mute: true,
+    controls: true,
+    loop: false,
+  });
+
+  if (!embedUrl) {
+    renderProjectFallbackImage(projectTitle, imagePath);
+    return;
+  }
+
+  videoContainer.className = "video-container video-container--ratio";
+  videoContainer.removeAttribute("style");
+  videoContainer.innerHTML = `
+    <img
+      class="project-video-poster"
+      src="${imagePath || "assets/images/hero/hero-1.webp"}"
+      alt="${projectTitle}"
+      loading="eager"
+      decoding="async"
+    >
+    <iframe
+      title="${projectTitle}"
+      src="${embedUrl}"
+      loading="eager"
+      referrerpolicy="origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+  `;
+
+  const iframe = videoContainer.querySelector("iframe");
+  iframe?.addEventListener(
+    "load",
+    () => {
+      window.setTimeout(() => {
+        if (document.body.contains(iframe)) {
+          videoContainer.classList.add("is-playing");
+        }
+      }, 900);
+    },
+    { once: true },
+  );
+}
+
+function renderProjectModalContent(projectId) {
+  const lang = getCurrentLanguage();
+  const projectTitle = getProjectTitle(projectId, lang);
+  const projects = getMockProjectsForProject(projectId, lang);
 
   const projectSpecificVideos = {
     2: "https://www.youtube.com/watch?v=DxPvE_5fVyU",
+    5: "https://www.youtube.com/watch?v=hizI1NxVoOQ",
+  };
+
+  const projectImages = {
+    2: "assets/images/projects/jeddah-central-stadium.webp",
+    3: "assets/images/projects/briman-water-plant.webp",
+    4: "assets/images/projects/education-campus.webp",
+    5: "assets/images/projects/vida.png",
   };
 
   const showcaseVideoPath = projectSpecificVideos[projectId] || "";
@@ -646,58 +702,27 @@ function openProjectModal(projectId) {
   videoContainer.className = "video-container video-container--loading";
   videoContainer.innerHTML = `
     <div class="video-loading-state">
-      جاري تجهيز العرض...
+      ${lang === "en" ? "Preparing showcase..." : "جاري تجهيز العرض..."}
     </div>
   `;
 
   if (!showcaseVideoPath) {
-    renderProjectFallbackImage(projectTitle, showcaseVideoPath);
+    renderProjectFallbackImage(projectTitle, projectImages[projectId]);
   } else {
-    const youtubeEmbedUrl = buildYouTubeEmbedUrl(showcaseVideoPath, {
-      autoplay: true,
-      mute: true,
-      controls: true,
-      loop: false,
-    });
-
-    if (youtubeEmbedUrl) {
-      videoContainer.className = "video-container video-container--ratio";
-      videoContainer.innerHTML = `
-        <iframe
-          src="${youtubeEmbedUrl}"
-          title="${projectTitle}"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-      `;
-    } else {
-      videoContainer.className = "video-container video-container--ratio";
-      videoContainer.innerHTML = `
-        <video controls autoplay muted loop playsinline preload="metadata" poster="assets/images/hero/hero-1.webp">
-          <source src="${showcaseVideoPath}" type="video/mp4">
-        </video>
-      `;
-
-      const showcaseVideo = videoContainer.querySelector("video");
-      showcaseVideo?.addEventListener(
-        "error",
-        () => {
-          renderProjectFallbackImage(projectTitle, showcaseVideoPath);
-        },
-        { once: true },
-      );
-    }
+    renderProjectYouTubeEmbed(projectTitle, showcaseVideoPath, projectImages[projectId]);
   }
 
   mockProjectsGrid.innerHTML = "";
   projects.forEach((project) => {
     const projectLink = document.createElement("a");
     projectLink.className = "mock-project-link";
-    projectLink.href = project.url;
-    projectLink.target = "_blank";
-    projectLink.rel = "noopener";
+    projectLink.href = "#";
+    projectLink.setAttribute("role", "button");
+    projectLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      closeProjectModal();
+      openProjectModal(project.projectId);
+    });
     projectLink.innerHTML = `
       <i class="fas fa-external-link-alt"></i>
       <div class="mock-project-info">
@@ -707,10 +732,14 @@ function openProjectModal(projectId) {
     `;
     mockProjectsGrid.appendChild(projectLink);
   });
+}
 
+function openProjectModal(projectId) {
+  currentProjectId = String(projectId || "");
   projectModal.classList.add("active");
   projectModal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
+  renderProjectModalContent(currentProjectId);
 }
 
 function closeProjectModal() {
@@ -719,21 +748,8 @@ function closeProjectModal() {
   document.body.style.overflow = "auto";
   videoContainer.className = "video-container";
   videoContainer.innerHTML = "";
+  currentProjectId = null;
 }
-
-projectCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    const projectId = card.getAttribute("data-project");
-    openProjectModal(projectId);
-  });
-  card.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      const projectId = card.getAttribute("data-project");
-      openProjectModal(projectId);
-    }
-  });
-});
 
 const projectsGrid = document.querySelector(".projects-grid");
 if (projectsGrid) {
@@ -1426,7 +1442,7 @@ function getLeadFlowCopy() {
           "We could not send your newsletter request. Please try again shortly.",
         requiredFields:
           "Please fill in the required fields: name, email, phone, and message.",
-        acceptTerms: "Please accept the policies to continue.",
+        acceptPrivacy: "Please accept the Privacy Policy to continue.",
         sending: '<i class="fas fa-spinner fa-spin"></i> Sending...',
         requestPrepared:
           "Your project request has been sent successfully. Our team will review it shortly.",
@@ -1445,8 +1461,7 @@ function getLeadFlowCopy() {
           "تعذر إرسال طلب الاشتراك الآن. حاول مرة أخرى بعد قليل.",
         requiredFields:
           "يرجى تعبئة الحقول المطلوبة: الاسم، البريد، الهاتف، الرسالة",
-        choosePayment: "فضلاً اختر طريقة الدفع.",
-        acceptTerms: "فضلاً وافق على السياسات للمتابعة.",
+        acceptPrivacy: "فضلاً وافق على سياسة الخصوصية للمتابعة.",
         sending: '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...',
         requestPrepared: "تم إرسال طلبك بنجاح وسيتم مراجعته من فريقنا قريبًا.",
         requestPreparedFallback:
@@ -2012,7 +2027,7 @@ const translations = {
     project3Tag3: "Moisture Resistance",
     project4Tag1: "Education",
     project4Tag2: "Mixed Use",
-    project5Tag1: "Education",
+    project5Tag1: "Residential",
     project5Tag2: "Temperature Control",
     project2Title: "Burj Motayara Villa",
     project2Desc:
@@ -2037,7 +2052,7 @@ const translations = {
       "Coordinated pouring operations using multiple pumps to ensure precision and quality.",
     project5Meta1Label: "Completion Year",
     project5Meta2Label: "Cubic Meters",
-    project5Meta3Label: "Campuses Developed",
+    project5Meta3Label: "Residential Building",
     mockProjectsTitle: "Similar Projects",
 
     partnersTitle: "Featured Development Partners",
@@ -2145,9 +2160,7 @@ const translations = {
     projectLocationPlaceholder: "Project Location (Optional)",
     consentPrefix: "I confirm the accuracy of the data and agree to the",
     consentPrivacy: "Privacy Policy",
-    consentTerms: "Terms & Conditions",
-    consentAnd: "and",
-    consentError: "Please agree to the policies to continue.",
+    consentError: "Please agree to the Privacy Policy to continue.",
 
     quickLinks: "Quick Links",
     servicesLinks: "Services",
@@ -2166,10 +2179,8 @@ const translations = {
     "footer-link-contact": "Contact Us",
     "footer-link-quote": "Get Quote",
     "privacy-policy-link": "Privacy Policy",
-    "terms-link": "Terms & Conditions",
     footerPoliciesTitle: "Site Policies",
     footerPolicyMainPrivacy: "Privacy Policy",
-    footerPolicyMainTerms: "Terms & Conditions",
     footerCopyrightCompany: "Golden Western Ready-Mix Concrete",
     footerCopyrightRights: "All rights reserved.",
     skipLink: "Skip to content",
@@ -2323,9 +2334,9 @@ const translations = {
     project3Tag3: "مقاومة للرطوبة",
     project4Tag1: "تعليمي",
     project4Tag2: "متعدد الاستخدام",
-    project5Tag1: "تعليمي",
+    project5Tag1: "سكني",
     project5Tag2: "تحكم حراري",
-    project2Title: "مشروع موتيارا فيلا",
+    project2Title: "مشروع برج موتيارا فيلا",
     project2Desc:
       "بتنفيذ متواصل لأكثر من 15 ساعة مع تنسيق دقيق لعمليات الصب باستخدام عدة مضخات لضمان الجودة والكفاءة في التنفيذ.",
     project2Meta2Label: "متر مكعب",
@@ -2348,7 +2359,7 @@ const translations = {
       "استخدام وتنسيق لعمليات الصب باستخدام عدة مضخات لضمان الدقة والجودة.",
     project5Meta1Label: "سنة الانتهاء",
     project5Meta2Label: "متر مكعب",
-    project5Meta3Label: "مجمع مطور",
+    project5Meta3Label: "مبنى سكني",
     mockProjectsTitle: "مشاريع مماثلة",
 
     partnersTitle: "شركاء التطوير والتنفيذ",
@@ -2455,12 +2466,9 @@ const translations = {
     concreteResistant: "خرسانة مقاومة",
     quantityPlaceholder: "الكمية المطلوبة (م³) (اختياري)",
     projectLocationPlaceholder: "موقع المشروع (اختياري)",
-    paymentNote2: "سنتواصل معك لتأكيد الطلب ومشاركة عرض السعر النهائي.",
-    paymentError: "فضلاً اختر طريقة الدفع.",
     consentPrefix: "أقرّ بصحة البيانات وأوافق على",
     consentPrivacy: "سياسة الخصوصية",
-    consentTerms: "الشروط والأحكام",
-    consentError: "فضلاً وافق على السياسات للمتابعة.",
+    consentError: "فضلاً وافق على سياسة الخصوصية للمتابعة.",
 
     quickLinks: "روابط سريعة",
     servicesLinks: "الخدمات",
@@ -2478,10 +2486,8 @@ const translations = {
     "footer-link-contact": "اتصل بنا",
     "footer-link-quote": "اطلب عرض سعر",
     "privacy-policy-link": "سياسة الخصوصية",
-    "terms-link": "الشروط والأحكام",
     footerPoliciesTitle: "سياسات الموقع",
     footerPolicyMainPrivacy: "سياسة الخصوصية",
-    footerPolicyMainTerms: "الشروط والأحكام",
     footerCopyrightCompany: "مصنع الغربية الذهبية للخرسانة الجاهزة",
     footerCopyrightRights: "جميع الحقوق محفوظة.",
     skipLink: "تخطي إلى المحتوى",
@@ -2514,7 +2520,7 @@ Object.assign(translations.en, {
   blogDesc:
     "Practical articles on ready-mix concrete in Saudi Arabia, concrete strength selection, hot weather concreting, quality testing, and reducing on-site execution risk.",
   blogTopicsHtml:
-    '<span class="blog-topic-label">Explore topics:</span><a class="blog-topic-chip" href="blog/hot-weather-concreting-saudi-arabia/">Hot weather concreting</a><a class="blog-topic-chip" href="blog/how-to-choose-concrete-strength/">Concrete strength selection</a><a class="blog-topic-chip" href="blog/types-of-concrete-differences/">Concrete types and uses</a>',
+    '<span class="blog-topic-label">Explore topics:</span><a class="blog-topic-chip" href="blog/hot-weather-concreting-saudi-arabia/index.html">Hot weather concreting</a><a class="blog-topic-chip" href="blog/how-to-choose-concrete-strength/index.html">Concrete strength selection</a><a class="blog-topic-chip" href="blog/types-of-concrete-differences/index.html">Concrete types and uses</a>',
   contactDesc:
     "Contact Golden Western to review mix specifications, quantities, and pour schedules, and get a quotation for ready-mix concrete supply in Jeddah.",
 });
@@ -2522,7 +2528,6 @@ Object.assign(translations.en, {
 Object.assign(translations.ar, {
   heroBadge: "توريد خرسانة جاهزة معتمدة في جدة للمشاريع السكنية والتجارية",
   heroTitle: "خرسانة جاهزة في جدة",
-  heroSubtitle: "نبني الاساس لمشاريع المستقبل ",
   heroSubtitle: "نبني الأساس لمشاريع المستقبل",
   heroDesc:
     "توفر الغربية الذهبية حلول الخرسانة الجاهزة في جدة للمقاولين والمطورين، مع خلطات مطابقة للمواصفات، وجدولة صب دقيقة، وخدمة توريد تدعم مشاريع السكن والبنية التحتية والتطوير التجاري.",
@@ -2533,18 +2538,32 @@ Object.assign(translations.ar, {
   blogDesc:
     "مقالات عملية حول الخرسانة الجاهزة في السعودية: اختيار المقاومة، الصب في الأجواء الحارة، اختبارات الجودة، وتقليل أخطاء التنفيذ في الموقع.",
   blogTopicsHtml:
-    '<span class="blog-topic-label">مواضيع مهمة:</span><a class="blog-topic-chip" href="blog/hot-weather-concreting-saudi-arabia/">الأجواء الحارة</a><a class="blog-topic-chip" href="blog/how-to-choose-concrete-strength/">اختيار المقاومة</a><a class="blog-topic-chip" href="blog/types-of-concrete-differences/">أنواع الخرسانة</a>',
+    '<span class="blog-topic-label">مواضيع مهمة:</span><a class="blog-topic-chip" href="blog/hot-weather-concreting-saudi-arabia/index.html">الأجواء الحارة</a><a class="blog-topic-chip" href="blog/how-to-choose-concrete-strength/index.html">اختيار المقاومة</a><a class="blog-topic-chip" href="blog/types-of-concrete-differences/index.html">أنواع الخرسانة</a>',
   contactDesc:
     "تواصل مع فريق الغربية الذهبية لمراجعة مواصفات الخلطة والكميات وجدولة الصب، والحصول على عرض سعر لتوريد الخرسانة الجاهزة في جدة.",
 });
 
+function normalizeLanguage(lang) {
+  return lang === "en" ? "en" : "ar";
+}
+
+function normalizeTheme(theme) {
+  return theme === "dark" ? "dark" : "light";
+}
+
 function toggleTheme(theme, persist = true) {
-  const isLight = theme === "light";
+  const normalizedTheme = normalizeTheme(theme);
+  const isLight = normalizedTheme === "light";
   document.body.classList.toggle("light-mode", isLight);
-  syncThemeButtons(theme);
+  document.documentElement.dataset.theme = normalizedTheme;
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor) {
+    themeColor.setAttribute("content", isLight ? "#003366" : "#07182b");
+  }
+  syncThemeButtons(normalizedTheme);
   if (persist) {
     try {
-      localStorage.setItem("theme", theme);
+      localStorage.setItem("theme", normalizedTheme);
     } catch {}
   }
   syncNavOffset();
@@ -2660,7 +2679,8 @@ function updateContent(lang) {
     `${content.heroTitle}<br><span>${content.heroSubtitle}</span>`;
   document.getElementById("hero-subtitle").textContent = content.heroDesc;
   document.getElementById("explore-btn").textContent = content.exploreBtn;
-  document.getElementById("contact-btn").textContent = content.contactBtn;
+  const contactBtn = document.getElementById("contact-btn");
+  if (contactBtn) contactBtn.textContent = content.contactBtn;
   const heroPlayBtn = document.getElementById("heroPlayBtn");
   if (heroPlayBtn) heroPlayBtn.setAttribute("aria-label", content.heroPlayAria);
   const heroWhatsapp = document.getElementById("hero-whatsapp");
@@ -2841,6 +2861,9 @@ function updateContent(lang) {
 
   document.getElementById("mockProjectsTitle").textContent =
     content.mockProjectsTitle;
+  if (currentProjectId && projectModal.classList.contains("active")) {
+    renderProjectModalContent(currentProjectId);
+  }
 
   document.getElementById("partners-title").textContent = content.partnersTitle;
   document.getElementById("partners-desc").textContent = content.partnersDesc;
@@ -2866,28 +2889,18 @@ function updateContent(lang) {
 
   const consent = document.getElementById("consent-text");
   if (consent) {
-    let consentHtml = `${content.consentPrefix} <a id="consent-privacy" href="privacy-policy.html">${content.consentPrivacy}</a> ${content.consentAnd} <a id="consent-terms" href="terms.html">${content.consentTerms}</a>.`;
-    if (content.consentRefund) {
-      consentHtml = `${content.consentPrefix} <a id="consent-privacy" href="privacy-policy.html">${content.consentPrivacy}</a> ${content.consentAnd} <a id="consent-terms" href="terms.html">${content.consentTerms}</a> ${content.consentAnd} <a id="consent-refund" href="refund-policy.html">${content.consentRefund}</a>.`;
-    }
+    let consentHtml = `${content.consentPrefix} <a id="consent-privacy" href="privacy-policy.html">${content.consentPrivacy}</a>.`;
     if (content.consentNote) {
       consentHtml += ` ${content.consentNote}`;
     }
     consent.innerHTML = consentHtml;
   }
-  const termsConsentError = document.getElementById("termsConsentError");
-  if (termsConsentError) termsConsentError.textContent = content.consentError;
+  const privacyConsentError = document.getElementById("privacyConsentError");
+  if (privacyConsentError) privacyConsentError.textContent = content.consentError;
 
   const privacyLink = document.getElementById("privacy-policy-link");
-  const termsLink = document.getElementById("terms-link");
 
   if (privacyLink) privacyLink.textContent = content["privacy-policy-link"];
-  if (termsLink) termsLink.textContent = content["terms-link"];
-
-  const refundLink = document.getElementById("refund-link");
-  if (privacyLink) privacyLink.textContent = content["privacy-policy-link"];
-  if (termsLink) termsLink.textContent = content["terms-link"];
-  if (refundLink) refundLink.textContent = content["refund-link"];
 
   document.getElementById("blog-title").textContent = content.blogTitle;
   document.getElementById("blog-desc").textContent = content.blogDesc;
@@ -3003,17 +3016,9 @@ function updateContent(lang) {
   setFooterLink("footer-link-contact", content["footer-link-contact"]);
   setFooterLink("footer-link-quote", content["footer-link-quote"]);
   setFooterLink("footer-policy-main-privacy", content.footerPolicyMainPrivacy);
-  setFooterLink("footer-policy-main-terms", content.footerPolicyMainTerms);
-
-  setFooterLink("footer-policy-main-refund", content.footerPolicyMainRefund);
 
   document.getElementById("privacy-policy-link").textContent =
     content["privacy-policy-link"];
-  const termsFooterLink = document.getElementById("terms-link");
-  if (termsFooterLink) termsFooterLink.textContent = content["terms-link"];
-
-  const refundFooterLink = document.getElementById("refund-link");
-  if (refundFooterLink) refundFooterLink.textContent = content["refund-link"];
 
   const stickyCallLabel = document.getElementById("sticky-call-label");
   if (stickyCallLabel) stickyCallLabel.textContent = content.stickyCall;
@@ -3053,14 +3058,14 @@ function updateContent(lang) {
 
 const savedLang = (() => {
   try {
-    return localStorage.getItem("lang") === "en" ? "en" : "ar";
+    return normalizeLanguage(localStorage.getItem("lang"));
   } catch {
     return "ar";
   }
 })();
 const savedTheme = (() => {
   try {
-    return localStorage.getItem("theme") || "light";
+    return normalizeTheme(localStorage.getItem("theme"));
   } catch {
     return "light";
   }
@@ -3072,7 +3077,7 @@ function setupLanguageAndThemeControls() {
 
   langBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const lang = btn.dataset.lang || "ar";
+      const lang = normalizeLanguage(btn.dataset.lang);
       try {
         localStorage.setItem("lang", lang);
       } catch {}
@@ -3083,7 +3088,7 @@ function setupLanguageAndThemeControls() {
 
   themeBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const theme = btn.dataset.theme || "light";
+      const theme = normalizeTheme(btn.dataset.theme);
       toggleTheme(theme, true);
     });
   });
@@ -3187,7 +3192,7 @@ document.getElementById("current-year").textContent = new Date().getFullYear();
   if (!form) return;
 
   const statusEl = document.getElementById("formStatus");
-  const termsError = document.getElementById("termsConsentError");
+  const privacyError = document.getElementById("privacyConsentError");
 
   const setStatus = (msg, tone = "success", mode = "direct") => {
     setLeadStatus(statusEl, "inquiry", msg, { tone, mode });
@@ -3204,7 +3209,7 @@ document.getElementById("current-year").textContent = new Date().getFullYear();
       selectedProductOption && selectedProductOption.value
         ? selectedProductOption.textContent.trim()
         : "";
-    const termsConsentEl = document.getElementById("termsConsent");
+    const privacyConsentEl = document.getElementById("privacyConsent");
     return {
       fullName: (document.getElementById("fullName")?.value || "").trim(),
       email: (document.getElementById("email")?.value || "").trim(),
@@ -3217,7 +3222,7 @@ document.getElementById("current-year").textContent = new Date().getFullYear();
         document.getElementById("projectLocation")?.value || ""
       ).trim(),
       message: (document.getElementById("message")?.value || "").trim(),
-      termsAccepted: !!(termsConsentEl && termsConsentEl.checked),
+      privacyAccepted: !!(privacyConsentEl && privacyConsentEl.checked),
       company: (document.getElementById("company")?.value || "").trim(), // honeypot
       utm_source: (document.getElementById("utm_source")?.value || "").trim(),
       utm_medium: (document.getElementById("utm_medium")?.value || "").trim(),
@@ -3236,7 +3241,7 @@ document.getElementById("current-year").textContent = new Date().getFullYear();
     const copy = getLeadFlowCopy();
 
     clearLeadStatus(statusEl);
-    if (termsError) termsError.style.display = "none";
+    if (privacyError) privacyError.style.display = "none";
 
     if (
       !payload.fullName ||
@@ -3248,9 +3253,9 @@ document.getElementById("current-year").textContent = new Date().getFullYear();
       return;
     }
 
-    if (!payload.termsAccepted) {
-      if (termsError) termsError.style.display = "block";
-      setStatus(copy.acceptTerms, "error");
+    if (!payload.privacyAccepted) {
+      if (privacyError) privacyError.style.display = "block";
+      setStatus(copy.acceptPrivacy, "error");
       return;
     }
 
@@ -3278,7 +3283,7 @@ document.getElementById("current-year").textContent = new Date().getFullYear();
         result.mode,
       );
       form.reset();
-      if (termsError) termsError.style.display = "none";
+      if (privacyError) privacyError.style.display = "none";
       resetQuantityDisplay();
     } catch (err) {
       console.error(err);
