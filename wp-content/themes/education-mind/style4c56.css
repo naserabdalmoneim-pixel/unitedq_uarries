@@ -3002,12 +3002,12 @@ h1.entry-title {
     clear: both;
     color: #ddd;
     font-size: 16px;
-    padding: 20px 0;
-    text-align: center;
+    padding: 28px 0 22px;
+    text-align: left;
 }
 
 #colophon a {
-    color:#ccc;
+    color: #ffffff;
 }
 
 #colophon a:hover {
@@ -3024,6 +3024,49 @@ h1.entry-title {
     float: right;
     display: inline-block;
     margin-left: 5px;
+}
+
+.footer-contact-grid {
+    align-items: stretch;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.footer-contact-item {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 82px;
+    padding: 16px 18px;
+}
+
+.footer-contact-label {
+    color: #f7be68;
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #bfc7d4;
+    font-size: 14px;
+    margin-top: 18px;
+    padding-top: 16px;
+    text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+    #colophon {
+        text-align: center;
+    }
+
+    .footer-contact-grid {
+        grid-template-columns: 1fr;
+    }
 }
 #footer-navigation {
     margin-bottom: 20px;
