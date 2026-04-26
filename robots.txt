@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://naserabdalmoneim-pixel.github.io/unitedq_uarries/sitemap.xml
