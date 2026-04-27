@@ -6238,8 +6238,8 @@ body {
 
     #masthead {
         order: 2;
-        padding: 24px 0 18px !important;
-        text-align: center;
+        padding: 14px 0 12px !important;
+        text-align: left;
     }
 
     .mobile-nav-wrap {
@@ -6247,8 +6247,9 @@ body {
         border-top: 3px solid #0b477c;
         box-sizing: border-box;
         left: auto !important;
-        padding: 8px 14px !important;
+        padding: 8px max(18px, calc((100vw - 1170px) / 2)) !important;
         position: relative !important;
+        text-align: left;
         top: auto !important;
         z-index: 20;
     }
@@ -6259,16 +6260,21 @@ body {
         order: 4;
     }
 
+    #footer-widgets {
+        order: 5;
+    }
+
     #colophon,
     .site-footer {
-        order: 5;
+        order: 6;
     }
 
     #masthead > .container {
         align-items: center;
         display: flex;
-        flex-direction: column;
-        gap: 18px;
+        flex-direction: row;
+        gap: 14px;
+        justify-content: space-between;
     }
 
     .site-branding,
@@ -6281,14 +6287,16 @@ body {
     .custom-logo-link img,
     .custom-logo {
         height: auto !important;
-        max-height: 94px !important;
-        width: 136px !important;
+        max-height: 76px !important;
+        width: 112px !important;
     }
 
     .right-head {
+        flex: 1 1 auto;
         float: none !important;
         margin: 0 !important;
-        width: 100%;
+        min-width: 0;
+        width: auto;
     }
 
     #quick-contact {
@@ -6302,20 +6310,21 @@ body {
         align-items: center;
         display: flex;
         flex-wrap: wrap;
-        gap: 10px 16px;
-        justify-content: center;
+        gap: 6px 14px;
+        justify-content: flex-end;
     }
 
     #quick-contact li,
     #quick-contact li:first-child {
         float: none !important;
-        font-size: 13px;
-        line-height: 1.35;
+        font-size: 12px;
+        line-height: 1.25;
         margin: 0 !important;
         max-width: 100%;
         min-width: 0;
-        padding-left: 24px;
+        padding-left: 20px;
         text-align: left;
+        white-space: nowrap;
     }
 
     #quick-contact li strong {
@@ -6324,7 +6333,7 @@ body {
 
     #quick-contact li::before,
     #quick-contact li.quick-email::before {
-        font-size: 18px;
+        font-size: 15px;
         left: 0;
         padding: 0;
         top: 50%;
@@ -6340,7 +6349,7 @@ body {
         align-items: center;
         display: inline-flex !important;
         float: none !important;
-        font-size: 15px;
+        font-size: 14px;
         gap: 12px;
         padding-left: 0 !important;
     }
@@ -6371,24 +6380,32 @@ body {
 
 @media screen and (max-width: 480px) {
     #masthead {
-        padding: 22px 0 16px !important;
+        padding: 12px 0 !important;
+    }
+
+    #masthead > .container {
+        align-items: flex-start;
+        gap: 10px;
     }
 
     .custom-logo-link img,
     .custom-logo {
-        max-height: 84px !important;
-        width: 122px !important;
+        max-height: 70px !important;
+        width: 104px !important;
     }
 
     #quick-contact > ul,
     .quick-contact-list {
         flex-direction: column;
-        gap: 8px;
+        gap: 5px;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 
     #quick-contact li,
     #quick-contact li:first-child {
-        font-size: 12px;
-        text-align: center;
+        font-size: 11px;
+        text-align: left;
+        white-space: normal;
     }
 }
