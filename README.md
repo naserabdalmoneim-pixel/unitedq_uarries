@@ -1,6 +1,6 @@
-# Unitedq Uarries static site
+# mhajer al_mutaheda static site
 
-Static GitHub Pages export for the Mahajer Al Mutaheda Company Group mirrored site.
+Static site export for mhajer al_mutaheda.
 
 ## Structure
 
